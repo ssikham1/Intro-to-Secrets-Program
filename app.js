@@ -28,6 +28,15 @@
 // use 'use usersDB' to switch/use the database
 // use 'db.users.find()' or 'db.people.find()' to show the documents in the database
 
+// once all updates are in, commit the changes to github
+    // 'git init' to intialize a new git repository; ability to save the different versions of your app/code
+    // 'git add .' to add all of our files in our current repository to our version control
+    // 'git config user.email "ssikhanm@yahoo.com"' to use your github email
+    // 'git config user.name "ssikham1"' to use your github username
+    // 'git commit -m "Add Environment Variables"' to commit the changes to the current version; start a new version
+
+
+
 // use 'node app.js' to run the app.js file; you view the results within your web browser by going to 'localhost:3000'
 require('dotenv').config();  // requires dotenv for our environment variable; always need to be on the top
 const express = require("express");
@@ -51,7 +60,6 @@ mongoose.connect('mongodb://localhost:27017/userDB', {
   useNewUrlParser: true
 });
 
-
 // creates a new schema/blueprint/structure we want to save within our database whenever a new record is added to the input field
 // includes 'new Mongoose.schema' to create a new object from the mongoose schema class instead of just a simple javascript object
 const userSchema = new mongoose.Schema ({
@@ -69,7 +77,6 @@ userSchema.plugin(encrypt, {secret: process.env.SECRET, encryptedFields: ["passw
 // the first parameter is the name of the collection to comply with the schema; should be singular because mongoose can dynamically update it to plural
 // the second parameter is the structure the first parameter has to comply by
 const User = mongoose.model("User", userSchema);
-
 
 app.get('/', (req, res) => {
   res.render("home");
